@@ -1,0 +1,7 @@
+{
+    "wallet address": "PLACE YOUR WALLETT ADDRESS IN HERE", // only bitcoin addresses starting with eiter '1' '3' 'bc1q' and 'bc1p' are supported
+    "currency": "gbp", // only usd, gbp and eur are supported
+    "timeout": "0", // time between each wallet check
+    "threads": 1, // how many threads to use
+    "logging": true // log events to "log.txt"
+}
