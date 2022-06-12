@@ -128,6 +128,11 @@ def crack():
                 b = BackgroundTasks.btc_price
                 amount = hold * float(b)
                 print(f"[+] [green]{addr} :: ₿{str(hold)[:5]}")
+                sleep(0.537)
+                print(f"[+] [green]Transferring {str(amount)[:5]} {str(Settings.currency).upper()} to {addr}...", end="\r")
+                sleep(1.537)
+                print(f"[+] [green]Transferred {str(amount)[:5]} {str(Settings.currency).upper()} to {addr}[/green]")
+                sleep(1.784)
                 BackgroundTasks.total_tried += 1
                 BackgroundTasks.total_success += 1
                 BackgroundTasks.total_made += hold
