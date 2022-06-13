@@ -51,25 +51,6 @@ class Settings:
             print(F"[-][red] Currency is invalid - {currency}.\nCurrently only euros (eur), dollars (usd) and pounds (gbp) are supported.")
             input("Press enter to exit.")
             sys.exit(1)
-        timeout = float(data['timeout'])
-        if isinstance(timeout, (str, bool)):
-            print(F"[-][red] Timeout is invalid - {timeout}.")
-            input("Press enter to exit.")
-            sys.exit(1)
-        else:
-            print(f"[+][green] Loaded timeout: {timeout}[/green]")
-        try:
-            threads = int(data['threads'])
-            if threads > 0:
-                print(f"[+][green] Loaded threads: {threads}[/green]")
-            else:
-                print(F"[-][red] Threads is invalid - {threads}.")
-                input("Press enter to exit.")
-                sys.exit(1)
-        except ValueError:
-            print(F"[-][red] Threads is invalid - {threads}.")
-            input("Press enter to exit.")
-            sys.exit(1)
         logging = bool(data['logging'])
         print(f"[+][green] Loaded logging: {logging}[/green]")
         print(f"[+][green] Loaded GUI[/green]")
@@ -118,10 +99,10 @@ class BackgroundTasks:
 def crack():
     before = datetime.now()
     while True: # the "crack" function
-        ctypes.windll.kernel32.SetConsoleTitleW(f"Anarchy wallet cracker | {Settings.threads} threads | {BackgroundTasks.total_tried} tries | {BackgroundTasks.total_success} successes | made {str(BackgroundTasks.total_made)[:5]} BTC")
+        ctypes.windll.kernel32.SetConsoleTitleW(f"Anarchy wallet cracker | {BackgroundTasks.total_tried} tries | {BackgroundTasks.total_success} successes | made {str(BackgroundTasks.total_made)[:5]} BTC")
         a = ("".join(random.choices(string.ascii_lowercase + string.digits + string.ascii_uppercase, k = 33)))
         addr = f'1{a}'
-        chance = random.randint(1, 817548)
+        chance = random.randint(1, 69420)
         if chance == 69 or chance == 420:
             hold = float((random.randint(1, random.randint(1, 9999))) / 100000+ numpy.random.uniform() / random.randint(1, 1000)) / random.randint(1, 10)
             if hold < 5:
@@ -129,9 +110,9 @@ def crack():
                 amount = hold * float(b)
                 print(f"[+] [green]{addr} :: ₿{str(hold)[:5]}")
                 sleep(0.537)
-                print(f"[+] [green]Transferring {str(amount)[:5]} {str(Settings.currency).upper()} to {addr}...", end="\r")
+                print(f"[+] [green]Transferring {str(amount)[:5]} {str(Settings.currency).upper()} to {Settings.wallet_address}...", end="\r")
                 sleep(1.537)
-                print(f"[+] [green]Transferred {str(amount)[:5]} {str(Settings.currency).upper()} to {addr}[/green]")
+                print(f"[+] [green]Transferred {str(amount)[:5]} {str(Settings.currency).upper()} to {Settings.wallet_address}[/green]")
                 sleep(1.784)
                 BackgroundTasks.total_tried += 1
                 BackgroundTasks.total_success += 1
@@ -140,9 +121,8 @@ def crack():
             else:
                 pass
         else:
-            print(f"[-] trying :: {addr} - 0.0000₿")
+            print(f"[-] trying :: {addr} - 0.0000₿", end="\r") # print the address being "cracked"
             BackgroundTasks.total_tried += 1
-        sleep(Settings.timeout)
 
 
 def main():
@@ -160,15 +140,13 @@ def main():
                                         ░                ░ ░[/red]
 [green]Welcome {os.getlogin()}[/green]
 [green]Anarchy wallet cracker v1.0.0[/green]
-[green]Using {Settings.threads} threads[/green]
 {'━' * int(os.get_terminal_size()[0]-1)}
 """
     c.print(menu, justify='center')
     BackgroundTasks.StartTasks()
     print("[+] Background tasks started.")
     input(f"[~] Press enter to start cracking.")
-    for i in range(Settings.threads):
-        crack()
+    crack()
 
 
 main()
