@@ -99,29 +99,30 @@ class BackgroundTasks:
 def crack():
     before = datetime.now()
     while True: # the "crack" function
+        now = datetime.now()
         ctypes.windll.kernel32.SetConsoleTitleW(f"Anarchy wallet cracker | {BackgroundTasks.total_tried} tries | {BackgroundTasks.total_success} successes | made {str(BackgroundTasks.total_made)[:5]} BTC")
         a = ("".join(random.choices(string.ascii_lowercase + string.digits + string.ascii_uppercase, k = 33)))
         addr = f'1{a}'
-        chance = random.randint(1, 69420)
-        if chance == 69 or chance == 420:
+        chance = random.randint(1, 819581)
+        if chance == 100 or chance == 1000:
             hold = float((random.randint(1, random.randint(1, 9999))) / 100000+ numpy.random.uniform() / random.randint(1, 1000)) / random.randint(1, 10)
             if hold < 5:
                 b = BackgroundTasks.btc_price
                 amount = hold * float(b)
-                print(f"[+] [green]{addr} :: ₿{str(hold)[:5]}")
+                print(f"[green][{now.strftime('%H:%M:%S')}] {addr} :: ₿{str(hold)} :: {str(amount)} {str(Settings.currency).upper()}")
                 sleep(0.537)
-                print(f"[+] [green]Transferring {str(amount)[:5]} {str(Settings.currency).upper()} to {Settings.wallet_address}...", end="\r")
+                print(f"[green][{now.strftime('%H:%M:%S')}] Transferring {str(hold)} {str(Settings.currency).upper()} to {Settings.wallet_address}...", end="\r")
                 sleep(1.537)
-                print(f"[+] [green]Transferred {str(amount)[:5]} {str(Settings.currency).upper()} to {Settings.wallet_address}[/green]")
+                print(f"[green][{now.strftime('%H:%M:%S')}] Transferred {str(hold)} {str(Settings.currency).upper()} to {Settings.wallet_address}[/green]")
                 sleep(1.784)
                 BackgroundTasks.total_tried += 1
                 BackgroundTasks.total_success += 1
                 BackgroundTasks.total_made += hold
-                BackgroundTasks.Log(f"[+] {addr} :: {str(hold)[:5]} ₿ :: {str(amount)[:5]} {str(Settings.currency).upper()}")
+                BackgroundTasks.Log(f"[+] {addr} :: {str(hold)} ₿ :: {str(amount)} {str(Settings.currency).upper()}")
             else:
                 pass
         else:
-            print(f"[-] trying :: {addr} - 0.0000₿", end="\r") # print the address being "cracked"
+            print(f"[{now.strftime('%H:%M:%S')}] trying :: {addr} - 0.0000₿", end="\r") # print the address being "cracked"
             BackgroundTasks.total_tried += 1
 
 
