@@ -6,5 +6,5 @@ Inspired by all the bullshit posts on tiktok, i decided to make on myself to pro
 
 ## Changelog
 
-# 13/06/2022:
+13/06/2022:
   - Released version 1.0
